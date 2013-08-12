@@ -1,16 +1,11 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
-class Alnum extends AbstractCtypeRule
+class Alnum extends Alpha
 {
-    protected function filter($input)
-    {
-        return $this->filterWhiteSpaceOption($input);
-    }
 
-    protected function ctypeFunction($input)
-    {
-        return ctype_alnum($input);
-    }
+    public $additionalChars = '';
+    public $stringFormat = '/^(\s|[a-zA-Z0-9])*$/';
+
 }
-

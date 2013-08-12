@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class AllOfException extends AbstractGroupedException
 {
+
     public static $defaultTemplates = array(
         self::MODE_DEFAULT => array(
             self::NONE => 'All of the required rules must pass for {{name}}',
@@ -13,5 +15,6 @@ class AllOfException extends AbstractGroupedException
             self::SOME => 'These rules must not pass for {{name}}',
         )
     );
+
 }
 

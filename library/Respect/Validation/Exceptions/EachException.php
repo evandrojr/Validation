@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class EachException extends AbstractNestedException
 {
+
     public static $defaultTemplates = array(
         self::MODE_DEFAULT => array(
             self::STANDARD => 'Each item in {{name}} must be valid',
@@ -11,5 +13,6 @@ class EachException extends AbstractNestedException
             self::STANDARD => 'Each item in {{name}} must not validate',
         )
     );
+
 }
 

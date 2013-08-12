@@ -1,4 +1,5 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class MinException extends ValidationException
@@ -20,5 +21,5 @@ class MinException extends ValidationException
     {
         return $this->getParam('inclusive') ? static::INCLUSIVE : static::STANDARD;
     }
-}
 
+}

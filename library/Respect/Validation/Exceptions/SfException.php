@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class SfException extends ValidationException
 {
+
     public static $defaultTemplates = array(
         self::MODE_DEFAULT => array(
             self::STANDARD => '{{name}}',
@@ -11,5 +13,5 @@ class SfException extends ValidationException
             self::STANDARD => '{{name}}',
         )
     );
-}
 
+}

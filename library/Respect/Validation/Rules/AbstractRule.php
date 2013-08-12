@@ -1,4 +1,5 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
 use Respect\Validation\Validatable;
@@ -6,6 +7,7 @@ use Respect\Validation\Exceptions\ValidationException;
 
 abstract class AbstractRule implements Validatable
 {
+
     protected $name;
     protected $template = null;
 
@@ -18,34 +20,24 @@ abstract class AbstractRule implements Validatable
 
     public function __invoke($input)
     {
-        return !is_a($this, __NAMESPACE__.'\\NotEmpty')
-            && $input === '' || $this->validate($input);
-    }
-
-    public function addOr()
-    {
-        $rules = func_get_args();
-        array_unshift($rules, $this);
-
-        return new OneOf($rules);
+        return $this->validate($input);
     }
 
     public function assert($input)
     {
-        if ($this->__invoke($input))
+        if ($this->validate($input))
             return true;
-        throw $this->reportError($input);
+        else
+            throw $this->reportError($input);
     }
 
     public function check($input)
     {
         return $this->assert($input);
     }
-
+    
     public function getName()
     {
-        if (empty($this->name))
-            preg_replace('/.*\\\/', '', get_class($this));
         return $this->name;
     }
 
@@ -53,7 +45,7 @@ abstract class AbstractRule implements Validatable
     {
         $exception = $this->createException();
         $input = ValidationException::stringify($input);
-        $name = $this->name ?: "\"$input\"";
+        $name = $this->getName() ? : "\"$input\"";
         $params = array_merge(
             get_class_vars(__CLASS__), get_object_vars($this), $extraParams,
             compact('input')
@@ -67,14 +59,12 @@ abstract class AbstractRule implements Validatable
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
     public function setTemplate($template)
     {
         $this->template = $template;
-
         return $this;
     }
 
@@ -83,8 +73,8 @@ abstract class AbstractRule implements Validatable
         $currentFQN = get_called_class();
         $exceptionFQN = str_replace('\\Rules\\', '\\Exceptions\\', $currentFQN);
         $exceptionFQN .= 'Exception';
-
         return new $exceptionFQN;
     }
+
 }
 

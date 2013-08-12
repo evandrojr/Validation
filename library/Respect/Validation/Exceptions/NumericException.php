@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class NumericException extends ValidationException
 {
+
     public static $defaultTemplates = array(
         self::MODE_DEFAULT => array(
             self::STANDARD => '{{name}} must be numeric',
@@ -11,5 +13,6 @@ class NumericException extends ValidationException
             self::STANDARD => '{{name}} must not be numeric',
         )
     );
+
 }
 

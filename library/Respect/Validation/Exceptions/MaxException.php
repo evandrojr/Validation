@@ -1,4 +1,5 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class MaxException extends ValidationException
@@ -20,5 +21,5 @@ class MaxException extends ValidationException
     {
         return $this->getParam('inclusive') ? static::INCLUSIVE : static::STANDARD;
     }
-}
 
+}

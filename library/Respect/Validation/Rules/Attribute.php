@@ -1,4 +1,5 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
 use ReflectionProperty;
@@ -7,12 +8,13 @@ use Respect\Validation\Validatable;
 
 class Attribute extends AbstractRelated
 {
+
     public function __construct($reference, Validatable $validator=null, $mandatory=true)
     {
-        if (!is_string($reference) || empty($reference)) {
-            throw new ComponentException('Invalid attribute/property name');
-        }
-
+        if (!is_string($reference) || empty($reference))
+            throw new ComponentException(
+                'Invalid attribute/property name'
+            );
         parent::__construct($reference, $validator, $mandatory);
     }
 
@@ -20,7 +22,6 @@ class Attribute extends AbstractRelated
     {
         $propertyMirror = new ReflectionProperty($input, $this->reference);
         $propertyMirror->setAccessible(true);
-
         return $propertyMirror->getValue($input);
     }
 
@@ -28,5 +29,6 @@ class Attribute extends AbstractRelated
     {
         return is_object($input) && property_exists($input, $this->reference);
     }
+
 }
 

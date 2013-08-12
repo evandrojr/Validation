@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
 class Regex extends AbstractRule
 {
+
     public $regex;
 
     public function __construct($regex)
@@ -14,5 +16,6 @@ class Regex extends AbstractRule
     {
         return (bool) preg_match($this->regex, $input);
     }
+
 }
 

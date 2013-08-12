@@ -1,16 +1,35 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
-class Alpha extends AbstractCtypeRule
+use Respect\Validation\Exceptions\ComponentException;
+
+class Alpha extends AbstractRule
 {
-    protected function filter($input)
+
+    public $additionalChars = '';
+    public $stringFormat = '/^(\s|[a-zA-Z])*$/';
+
+    public function __construct($additionalChars='')
     {
-        return $this->filterWhiteSpaceOption($input);
+        if (!is_string($additionalChars))
+            throw new ComponentException(
+                'Invalid list of additional characters to be loaded'
+            );
+        $this->additionalChars = $additionalChars;
     }
 
-    protected function ctypeFunction($input)
+    public function validate($input)
     {
-        return ctype_alpha($input);
+        if (!is_scalar($input))
+            return false;
+        
+        $input = (string) $input;
+        $cleanInput = str_replace(str_split($this->additionalChars), '', $input);
+        
+        return ($cleanInput !== $input && $cleanInput === '')
+               || preg_match($this->stringFormat, $cleanInput);
     }
+
 }
 

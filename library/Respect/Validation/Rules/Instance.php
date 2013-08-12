@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
 class Instance extends AbstractRule
 {
+
     public $instanceName;
 
     public function __construct($instanceName)
@@ -19,5 +21,5 @@ class Instance extends AbstractRule
     {
         return $input instanceof $this->instanceName;
     }
-}
 
+}

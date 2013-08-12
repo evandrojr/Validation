@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class NoWhitespaceException extends ValidationException
 {
+
     public static $defaultTemplates = array(
         self::MODE_DEFAULT => array(
             self::STANDARD => '{{name}} must not contain whitespace',
@@ -11,5 +13,6 @@ class NoWhitespaceException extends ValidationException
             self::STANDARD => '{{name}} must not not contain whitespace',
         )
     );
+
 }
 

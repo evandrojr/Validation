@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Exceptions;
 
 class ZendException extends AbstractNestedException
 {
+
     public static $defaultTemplates = array(
         self::MODE_DEFAULT => array(
             self::STANDARD => '{{name}}',
@@ -11,5 +13,6 @@ class ZendException extends AbstractNestedException
             self::STANDARD => '{{name}}',
         )
     );
+
 }
 

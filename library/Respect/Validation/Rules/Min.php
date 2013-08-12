@@ -1,8 +1,10 @@
 <?php
+
 namespace Respect\Validation\Rules;
 
 class Min extends AbstractRule
 {
+
     public $inclusive;
     public $minValue;
 
@@ -14,11 +16,11 @@ class Min extends AbstractRule
 
     public function validate($input)
     {
-        if ($this->inclusive) {
+        if ($this->inclusive)
             return $input >= $this->minValue;
-        } else {
+        else
             return $input > $this->minValue;
-        }
     }
+
 }
 
